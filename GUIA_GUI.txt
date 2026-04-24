@@ -1,0 +1,327 @@
+╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║   📥 ORGANIZADOR COM GUI - Guia de Uso                      ║
+║   Versão 2.0 com Interface Gráfica (PyQt5)                  ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+
+
+🚀 INSTALAÇÃO
+═══════════════════════════════════════════════════════════════
+
+Passo 1: Instalar dependências (inclui PyQt5)
+────────────────────────────────────────────
+
+    pip install -r requirements.txt
+
+Ou manualmente:
+    pip install PyQt5 pystray pillow watchdog plyer
+
+
+Passo 2: Executar a versão com GUI
+──────────────────────────────────
+
+    python organizador_downloads_com_gui.py
+
+
+═══════════════════════════════════════════════════════════════
+📊 INTERFACE (Dashboard)
+═══════════════════════════════════════════════════════════════
+
+A janela com GUI tem 3 abas principais:
+
+┌─────────────────────────────────────────────────────────────┐
+│ 📥 Organizador de Downloads v2.0        🪟 ➖ ✕              │
+├─────────────────────────────────────────────────────────────┤
+│                                                              │
+│  [📊 Dashboard] [📋 Log] [⚙️ Configurações]                │
+│                                                              │
+│  ─────────────────────────────────────────────────────────  │
+│                                                              │
+│  📂 Monitorando: C:\Users\User\Downloads                   │
+│  📁 Organizando em: C:\Users\User\Organizador              │
+│  🕐 Última atualização: 14/04/2024 10:30:45                │
+│                                                              │
+│  ┌─────────┬────────┬────────┬────────┐                    │
+│  │📦 Imgs  │📦 PDFs │📦 Docs │📦 Vids │                    │
+│  │   12    │   5    │   8    │   3    │                    │
+│  └─────────┴────────┴────────┴────────┘                    │
+│                                                              │
+│  [🔄 Atualizar] [📁 Abrir] [➖ Minimizar] [🛑 Sair]       │
+│                                                              │
+└─────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════
+📊 ABA 1: DASHBOARD
+═══════════════════════════════════════════════════════════════
+
+Mostra em tempo real:
+
+✅ Informações:
+   - Pasta sendo monitorada
+   - Pasta de destino
+   - Última atualização
+
+✅ Estatísticas:
+   - Contador de arquivos por categoria
+   - Atualiza automaticamente quando arquivo é movido
+   - Cores destacadas (azul)
+
+✅ Botões:
+   - 🔄 Atualizar: Força atualização dos contadores
+   - 📁 Abrir Organizador: Abre pasta de destino no Explorer
+   - ➖ Minimizar: Oculta a janela (ainda rodando)
+   - 🛑 Sair: Fecha o programa
+
+
+═══════════════════════════════════════════════════════════════
+📋 ABA 2: LOG DE EVENTOS
+═══════════════════════════════════════════════════════════════
+
+Mostra em tempo real cada arquivo movido:
+
+Exemplo:
+    [14:30:45] ✅ foto.jpg → Imagens
+    [14:30:50] ✅ documento.pdf → PDFs
+    [14:31:02] ✅ video.mp4 → Vídeos
+    [14:31:15] ❌ Erro: Arquivo travado
+
+Recursos:
+    🗑️ Limpar Log      → Apaga histórico
+    💾 Exportar Log    → Salva em arquivo .txt
+
+
+═══════════════════════════════════════════════════════════════
+⚙️ ABA 3: CONFIGURAÇÕES
+═══════════════════════════════════════════════════════════════
+
+Mostra informações e permite abrir pastas:
+
+✅ Pastas:
+   📂 Pasta Monitorada     [📂 Abrir Pasta]
+   📁 Pasta de Destino     [📁 Abrir Destino]
+
+✅ Categorias:
+   Lista todas as categorias e seus arquivos
+   Ex:
+       📦 Imagens:
+          .jpg, .jpeg, .png, .gif, ...
+       📦 PDFs:
+          .pdf
+       etc.
+
+✅ Sobre:
+   Informações do projeto
+   Versão
+   Tecnologias usadas
+
+
+═══════════════════════════════════════════════════════════════
+🎯 SYSTEM TRAY (Ícone na Bandeja)
+═══════════════════════════════════════════════════════════════
+
+Além da janela, ainda tem o ícone AZUL na bandeja:
+
+Clique com botão DIREITO no ícone azul:
+
+    🪟 Abrir Janela        → Mostra a GUI
+    📁 Abrir Organizador   → Abre pasta organizada
+    📂 Abrir Downloads     → Abre pasta monitorada
+    ──────────────────
+    🛑 Sair                → Encerra tudo
+
+
+═══════════════════════════════════════════════════════════════
+🔄 FLUXO DE USO NORMAL
+═══════════════════════════════════════════════════════════════
+
+1. INICIAR:
+   python organizador_downloads_com_gui.py
+   
+   ✅ Abre janela com GUI
+   ✅ Ícone azul aparece na bandeja
+   ✅ Monitor inicia automaticamente
+
+2. MONITORAR:
+   - Janela mostra Dashboard com estatísticas
+   - Deixe rodando em background
+   - Você pode minimizar a janela
+
+3. BAIXAR ARQUIVO:
+   - Coloque arquivo em ~/Downloads/
+   - Dashboard atualiza em tempo real
+   - Log mostra cada arquivo movido
+   - Notificação nativa aparece
+
+4. VER PROGRESSO:
+   - Clique na aba "📋 Log" para ver histórico
+   - Clique "🔄 Atualizar" para forçar refresh
+   - Os contadores aumentam em tempo real
+
+5. ENCERRAR:
+   - Botão "🛑 Sair" na janela, OU
+   - Menu do ícone tray → Sair
+
+
+═══════════════════════════════════════════════════════════════
+💡 DIFERENÇAS: CLI vs GUI
+═══════════════════════════════════════════════════════════════
+
+VERSÃO CLI (sem GUI):
+    ✅ Mais leve (menos memória)
+    ✅ Terminal mostra logs
+    ✅ Só ícone tray
+    
+    ❌ Sem visualização em tempo real
+    ❌ Sem estatísticas gráficas
+    ❌ Menos profissional
+
+VERSÃO COM GUI (PyQt5):
+    ✅ Dashboard visual
+    ✅ Estatísticas em tempo real
+    ✅ Log formatado e exportável
+    ✅ Configurações intuitivas
+    ✅ Tema dark profissional
+    ✅ Mais impressionante para portfólio
+    
+    ❌ Usa mais memória RAM (~80-100 MB)
+
+
+═══════════════════════════════════════════════════════════════
+🔧 CUSTOMIZAÇÕES POSSÍVEIS
+═══════════════════════════════════════════════════════════════
+
+1. MUDAR COR DO TEMA:
+   Procure por "estilo_dark()" e mude cores:
+   
+   Azul → Verde:
+   #42a5f5 → #4caf50
+   #64b5f6 → #66bb6a
+   #2196f3 → #388e3c
+
+2. ADICIONAR GRÁFICOS:
+   Use PyQt5.QtChart para fazer:
+   - Gráfico de pizza (categorias)
+   - Gráfico de barras (histórico)
+   - Gráfico de linha (ao longo do tempo)
+
+3. EXPORTAR EM EXCEL:
+   Adicione "openpyxl" e exporte logs como .xlsx
+
+4. CONFIGURAÇÃO PERSISTENTE:
+   Salve configurações em JSON
+   Carregue ao iniciar
+
+
+═══════════════════════════════════════════════════════════════
+⚠️ TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════
+
+❌ "ModuleNotFoundError: No module named 'PyQt5'"
+   → pip install PyQt5
+
+❌ Janela não aparece
+   → Tente: python organizador_downloads_com_gui.py
+   → Se nada acontecer, verifique a instalação do PyQt5
+
+❌ Ícone tray não aparece
+   → Procure seta ↑ no canto inferior direito (Windows)
+
+❌ Log vazio
+   → Abra a aba "📊 Dashboard" e clique "🔄 Atualizar"
+
+❌ "QApplication: no display"
+   → Erro Linux/servidor sem display gráfico
+   → Use a versão CLI em servidores
+
+
+═══════════════════════════════════════════════════════════════
+📈 PERFORMANCE
+═══════════════════════════════════════════════════════════════
+
+Memória: ~80-100 MB (Python + PyQt5)
+CPU: <1% idle (quase nada)
+Startup: 2-3 segundos
+
+Você pode deixar rodando o dia inteiro sem problemas!
+
+
+═══════════════════════════════════════════════════════════════
+✨ DICAS PRO
+═══════════════════════════════════════════════════════════════
+
+1. MINIMIZE A JANELA:
+   Clique "➖ Minimizar" para ocultar
+   O ícone tray continua rodando
+   Clique no ícone para reabrir
+
+2. VEJA ARQUIVOS MOVIDOS:
+   Aba "📋 Log" mostra tudo em tempo real
+   Você pode exportar esse log como arquivo
+
+3. ABRA DIRETO:
+   Botões "📂 Abrir" na aba de Configurações
+   Ou menu do tray icon
+
+4. AGENDAR INICIALIZAÇÃO:
+   Windows: Coloque o .py na pasta Startup
+   Linux: Adicione ao .bashrc
+   macOS: Use LaunchAgent
+
+5. CRIAR ATALHO:
+   Windows: Clique direito → Criar atalho
+   Renomeie para algo como "Organizador Downloads"
+   Cole em Desktop
+
+
+═══════════════════════════════════════════════════════════════
+🎓 PORTFÓLIO
+═══════════════════════════════════════════════════════════════
+
+Esta versão com GUI é MUITO mais impressionante para portfólio!
+
+Mostra:
+✅ PyQt5 (GUI profissional)
+✅ Threading (roda em paralelo)
+✅ System Tray (integração OS)
+✅ Real-time updates (sinais)
+✅ Tema dark (design moderno)
+✅ Logs estruturados
+✅ Exportação de dados
+✅ Arquitetura escalável
+
+No LinkedIn/GitHub coloque:
+"Sistema de organização com interface gráfica
+em tempo real, usando Python, PyQt5 e Threading"
+
+Muito mais legal que a versão CLI! 🚀
+
+
+═══════════════════════════════════════════════════════════════
+🎮 PRÓXIMAS MELHORIAS
+═══════════════════════════════════════════════════════════════
+
+Você pode adicionar:
+
+Level 1 (Fácil):
+  ✅ Gráficos (pie chart)
+  ✅ Tema light/dark toggle
+  ✅ Estatísticas detalhadas
+
+Level 2 (Médio):
+  ✅ Configuração editar categorias
+  ✅ Histórico com datas
+  ✅ Backup automático
+
+Level 3 (Avançado):
+  ✅ Database (SQLite)
+  ✅ API REST para remoto
+  ✅ Cloud sync (Google Drive)
+
+
+═══════════════════════════════════════════════════════════════
+
+Bom uso! E aproveite essa versão para seu portfólio! 🎨
+
+═══════════════════════════════════════════════════════════════
