@@ -172,5 +172,3 @@ Totalmente aceitável para desktop!
 Use como quiser! 🚀
 
 ---
-
-**Silvestre, seu projeto está pronto para portfólio!** 💪
