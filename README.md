@@ -1,174 +1,74 @@
-# 📥 Organizador de Downloads
+# 📁 Organizador de Downloads - V03
 
-Aplicação desktop que organiza seus downloads automaticamente em categorias.
+![Python](https://img.shields.io/badge/Python-3.8+-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen)
 
-## ✨ Features
+Ferramenta automática desenvolvida em Python para organizar, categorizar e renomear arquivos de forma inteligente. Ideal para manter fluxos de trabalho acadêmicos e profissionais estruturados, eliminando a desordem da pasta de downloads com regras customizáveis.
 
-- 🎯 **Dashboard em tempo real** com contadores
-- 📊 **3 abas**: Dashboard, Log, Configurações  
-- 🔔 **Notificações nativas** quando arquivo é organizado
-- 🎨 **Tema dark profissional**
-- 📍 **System Tray** com menu
-- ⚙️ **Threading** - roda em background sem travar
-- 💾 **Log** com histórico de arquivos movidos
+## 🎯 Funcionalidades
+* **🗂️ Organização Inteligente:** Categorização automática por extensão (Documentos, Imagens, Vídeos, etc).
+* **✏️ Gestão de Nomes:** Renomeação em massa com padrões customizáveis.
+* **📅 Agrupamento Temporal:** Organização de arquivos por data de criação ou modificação.
+* **🔍 Limpeza de Disco:** Detecção e remoção de duplicatas e arquivamento de itens antigos (>90 dias).
+* **⚙️ Automação (Watchdog):** Monitoramento em tempo real da pasta (agendamento diário/horário).
+* **📊 Governança:** Geração de relatórios de operação e função de "Desfazer" (Undo).
 
-## 🚀 Começar (2 passos)
+## 🛠️ Tecnologias
+* **Python 3.8+**
+* **Bibliotecas Chave:** `pathlib` (gestão de caminhos), `shutil` (operação de arquivos), `schedule` (automação), `watchdog` (monitoramento de eventos).
 
-### 1. Instalar dependências
+## 📦 Instalação
 ```bash
+# Clone o repositório
+git clone [https://github.com/PSilvestree/organizador_downloads-V03.git](https://github.com/PSilvestree/organizador_downloads-V03.git)
+cd organizador_downloads-V03
+
+# Instale as dependências
 pip install -r requirements.txt
 ```
 
-### 2. Executar
+## 🚀 Como Usar
+
+### Interface CLI
 ```bash
-python organizador_downloads_com_gui.py
+python main.py
+```
+Ao iniciar, o menu interativo permitirá escolher entre organizar agora, configurar novas regras ou verificar relatórios de espaço liberado.
+
+### Configuração (`config.json`)
+Você pode definir suas próprias extensões e destinos:
+```json
+{
+  "pasta_downloads": "C:\\Users\\Paulo\\Downloads",
+  "estrutura_pastas": {
+    "Pesquisa_UEM": [".pdf", ".docx", ".xlsx"],
+    "Midia": [".jpg", ".png", ".mp4"]
+  },
+  "remover_duplicatas": true
+}
 ```
 
-**Pronto!** Abre a janela com GUI + ícone na bandeja.
-
-## 📖 Guia Rápido
-
-### Primeira vez
-1. Execute o programa
-2. Janela abre com 3 abas (Dashboard, Log, Config)
-3. Ícone azul aparece na bandeja do sistema
-
-### Testando
-Coloque um arquivo em `~/Downloads`:
-```bash
-copy NUL "%USERPROFILE%\Downloads\teste.pdf"
+## 📊 Exemplo de Estrutura Gerada
+```text
+Downloads/
+├── Documentos/
+│   ├── Relatório_Mestrado_2026.pdf
+│   └── Planilha_Pesquisa.xlsx
+├── Imagens/
+│   └── Screenshot_2026-04-25.png
+└── Arquivos_Antigos/ (Movidos automaticamente após 90 dias)
 ```
 
-Você verá:
-- ✅ Dashboard atualizar de 0 → 1
-- ✅ Log mostra: `[14:35:22] ✅ teste.pdf → PDFs`
-- ✅ Arquivo movido para `~/Organizador/PDFs/`
-- ✅ Notificação aparece na tela
-
-## 🎯 Interface
-
-### 📊 Aba Dashboard
-- Mostra pastas monitoradas
-- Contadores por categoria (atualizam em tempo real)
-- Botões de ação rápida
-
-### 📋 Aba Log
-- Histórico de todos os arquivos movidos
-- Com timestamps
-- Botão para limpar
-
-### ⚙️ Aba Configurações
-- Caminhos das pastas
-- Lista de categorias
-- Informações do projeto
-
-## 🎮 Botões
-
-| Botão | O que faz |
-|-------|-----------|
-| 🔄 Atualizar | Força refresh dos contadores |
-| 📁 Abrir | Abre pasta organizada |
-| ➖ Minimizar | Oculta janela (continua rodando) |
-| 🛑 Sair | Encerra programa |
-
-### Menu Tray (Botão direito no ícone azul)
-- 🪟 Abrir Janela
-- 📁 Abrir Organizador
-- 📂 Abrir Downloads
-- 🛑 Sair
-
-## 📁 Categorias
-
-Arquivos são organizados em:
-
-```
-~/Organizador/
-├── Imagens/        (.jpg, .png, .gif, etc)
-├── PDFs/           (.pdf)
-├── Documentos/     (.doc, .docx, .xlsx, etc)
-├── Vídeos/         (.mp4, .avi, .mov, etc)
-├── Áudios/         (.mp3, .wav, .flac, etc)
-├── Comprimidos/    (.zip, .rar, .7z, etc)
-├── Executáveis/    (.exe, .msi, .app, etc)
-├── Código/         (.py, .js, .html, etc)
-└── Outros/         (extensões não catalogadas)
-```
-
-## ⚙️ Configurar
-
-### Monitorar outra pasta
-
-Abra `organizador_downloads_com_gui.py` e mude:
-
-```python
-PASTA_MONITORADA = os.path.expanduser("~/Downloads")
-```
-
-Para sua pasta desejada.
-
-### Adicionar nova categoria
-
-Procure por `CATEGORIAS` e adicione:
-
-```python
-"MinhaCategoria": [".xyz", ".abc"],
-```
-
-## 💻 Requisitos
-
-- Python 3.7+
-- Windows, macOS ou Linux
-
-**Dependências:**
-- `pystray` - ícone na bandeja
-- `pillow` - criar ícone
-- `watchdog` - monitorar pasta
-- `plyer` - notificações
-
-## 🎓 Para Portfólio
-
-Este projeto demonstra:
-
-✅ Threading (2+ threads em paralelo)
-✅ GUI Desktop (Tkinter)
-✅ System Tray (integração SO)
-✅ File Watching (monitoramento em tempo real)
-✅ Callbacks e eventos
-✅ Design dark moderno
-✅ Notificações nativas
-
-## ❓ Troubleshooting
-
-### "ModuleNotFoundError"
-```bash
-pip install -r requirements.txt
-```
-
-### Ícone não aparece na bandeja
-- **Windows**: Procure seta ↑ no canto inferior direito
-- **macOS**: Procure no canto superior direito
-- **Linux**: Depende do gerenciador de janelas
-
-### Arquivo não foi movido
-- Extensão está em CATEGORIAS?
-- Arquivo está travado por outro programa?
-- Pasta tem permissão de escrita?
-
-### Notificações não aparecem
-- **Windows**: Ative em Configurações
-- **macOS**: Autorize em Privacy & Security
-- **Linux**: `sudo apt-get install libnotify-bin`
-
-## 📊 Performance
-
-- **Startup**: 2-3 segundos
-- **Memória**: ~60 MB
-- **CPU idle**: < 1%
-
-Totalmente aceitável para desktop!
+## 📈 Roadmap de Versões
+| Versão | Status | Principais Implementações |
+|:---:|:---:|:---|
+| **v0.3** | Atual | Agendamento, relatórios HTML e histórico de operações. |
+| **v0.2** | Estável | Remoção de duplicatas e lógica de arquivamento. |
+| **v0.1** | Inicial | Script básico de movimentação por extensão. |
 
 ## 📄 Licença
+Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
 
-Use como quiser! 🚀
-
----
+🔗 [LinkedIn](https://www.linkedin.com/in/paulosilvestree)
+```
